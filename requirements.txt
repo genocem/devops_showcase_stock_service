@@ -1,0 +1,10 @@
+Flask
+mongoengine
+Flask-Cors
+python-dotenv
+PyJWT
+gunicorn
+celery
+redis
+mongoengine
+dotenv
