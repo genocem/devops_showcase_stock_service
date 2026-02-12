@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    tools {
-        nodejs 'nodeJs_23'
-    }
-
     environment {
         IMAGE_NAME = 'devosp_showcase_stock_service'
         IMAGE_TAG = "${env.BUILD_ID}"
