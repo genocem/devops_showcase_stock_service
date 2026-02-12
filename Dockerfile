@@ -24,7 +24,7 @@ WORKDIR /app
 COPY --from=builder /usr/local/lib/python3.9/site-packages /usr/local/lib/python3.9/site-packages
 
 # Copy the application source code from the previous stage
-COPY --from=builder /app/* .
+COPY --from=builder /app/* ./
 
 
 CMD ["python","run.py"]
