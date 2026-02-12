@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = 'devosp_showcase_stock_service'
+        IMAGE_NAME = 'devops_showcase_stock_service'
         IMAGE_TAG = "${env.BUILD_ID}"
         DOCKER_IMAGE = "${IMAGE_NAME}:${IMAGE_TAG}"
         GIT_REPO_URL = 'https://github.com/genocem/devops_showcase_stock_service.git'
