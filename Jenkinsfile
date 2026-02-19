@@ -14,7 +14,7 @@ pipeline {
         // azure container registry
         ACR_NAME = 'stageMicroservices'
         ACR_REPO = "${ACR_NAME}.azurecr.io/${IMAGE_NAME}"
-        ACR_CREDENTIALS_ID = 'ACR_CREDENTIALS_ID'
+        ACR_CREDENTIALS = 'ACR_CREDENTIALS'
     }
 
     stages {
@@ -61,7 +61,7 @@ pipeline {
 // this part will be commented untill i finish testing the previous parts
         stage('Push to Azure Container Registry') {
             steps {
-                withCredentials([usernamePassword(credentialsId: "${ACR_CREDENTIALS_ID}", usernameVariable: 'AZURE_USERNAME', passwordVariable: 'AZURE_PASSWORD')]) {
+                withCredentials([usernamePassword(credentialsId: "${ACR_CREDENTIALS}", usernameVariable: 'AZURE_USERNAME', passwordVariable: 'AZURE_PASSWORD')]) {
                     script {
                         sh "echo ${AZURE_PASSWORD} | docker login ${ACR_NAME}.azurecr.io -u ${AZURE_USERNAME} --password-stdin"
                         sh "docker tag ${DOCKER_IMAGE} ${ACR_REPO}:${IMAGE_TAG}"
