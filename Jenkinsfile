@@ -58,7 +58,6 @@ pipeline {
             }
             }
 
-// this part will be commented untill i finish testing the previous parts
         stage('Push to Azure Container Registry') {
             steps {
                 withCredentials([usernamePassword(credentialsId: "${ACR_CREDENTIALS}", usernameVariable: 'AZURE_USERNAME', passwordVariable: 'AZURE_PASSWORD')]) {
