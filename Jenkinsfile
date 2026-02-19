@@ -53,7 +53,7 @@ pipeline {
         stage('image Scan') {
             steps {
                 sh '''
-                    trivy client --remote http://localhost:4954 --severity HIGH,CRITICAL --report summary --output ${TRIVY_REPORT_IMAGE} --no-progress ${DOCKER_IMAGE} --format table
+                    trivy image --severity HIGH,CRITICAL --report summary --output ${TRIVY_REPORT_IMAGE} --no-progress ${DOCKER_IMAGE}
                 '''
             }
             }
