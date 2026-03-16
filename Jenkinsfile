@@ -57,7 +57,7 @@ pipeline {
                     -v /var/run/docker.sock:/var/run/docker.sock \
                     -v trivy-cache:/root/.cache/trivy \
                     -v ${WORKSPACE}:/workspace \
-                    aquasecurity/trivy:latest image \
+                    aquasec/trivy:0.69.3 image \
                     --severity HIGH,CRITICAL \
                     --format table \
                     --output /workspace/${TRIVY_REPORT_IMAGE} \
