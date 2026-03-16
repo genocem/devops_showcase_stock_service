@@ -50,13 +50,22 @@ pipeline {
             }
         }
 
-        stage('image Scan') {
+        stage('Image Scan') {
             steps {
                 sh '''
-                    trivy image --severity HIGH,CRITICAL --report summary --output ${TRIVY_REPORT_IMAGE} --no-progress ${DOCKER_IMAGE}
+                    docker run --rm \
+                    -v /var/run/docker.sock:/var/run/docker.sock \
+                    -v trivy-cache:/root/.cache/trivy \
+                    -v ${WORKSPACE}:/workspace \
+                    aquasecurity/trivy:latest image \
+                    --severity HIGH,CRITICAL \
+                    --format table \
+                    --output /workspace/${TRIVY_REPORT_IMAGE} \
+                    --no-progress \
+                    ${DOCKER_IMAGE}
                 '''
             }
-            }
+        }
 
         stage('Push to Azure Container Registry') {
             steps {
